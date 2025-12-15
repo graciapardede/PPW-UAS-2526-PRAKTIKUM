@@ -1,0 +1,23 @@
+/* Minimal global styles */
+
+html,body,#__next { height:100%; }
+body { margin:0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#f7fafc; color:#0f172a }
+a { color: #2563eb }
+input,button,select { font-family: inherit }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 24px }
+
+/* Grid / card layout */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px }
+.card { background: white; padding: 16px; border-radius: 8px; box-shadow: 0 2px 8px rgba(15,23,42,0.06) }
+.card h3 { margin: 0 0 8px 0 }
+.muted { color: #64748b; font-size: 12px }
+
+/* Forms */
+form div { margin-bottom: 8px }
+input, select { padding: 8px; width: 100%; box-sizing: border-box }
+button { padding: 8px 12px; cursor: pointer }
+
+@media (max-width: 600px) {
+	.container { padding: 12px }
+}
