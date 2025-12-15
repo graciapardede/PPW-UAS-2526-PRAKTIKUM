@@ -1,0 +1,13 @@
+1. Rancang konsep awal Sistem Perpustakaan Digital berbasis REST API.
+2. Bangun REST API Sistem Perpustakaan Digital dengan modul Authentication, Books, Members, dan Borrowings lengkap dengan CRUD, token authentication, dan testing Postman.
+
+3.  Buatkan Sistem Perpustakaan Digital berbasis REST API.
+    Fitur sistem:
+    - Login dan register pengguna
+    - CRUD data buku
+    - CRUD data anggota
+    - Proses peminjaman dan pengembalian buku
+    Endpoint API:
+    Authentication, Books, Members, dan Borrowings seperti standar REST API.
+    Gunakan JSON, token authentication, validasi input, dan tampilkan status code HTTP yang benar.
+    Sertakan contoh pengujian API menggunakan Postman.
