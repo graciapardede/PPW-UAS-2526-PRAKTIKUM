@@ -4,16 +4,6 @@
     "description": "REST API Collection untuk sistem Perpustakaan Digital dengan fitur CRUD Books, Members, dan Borrowings",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
-  "auth": {
-    "type": "bearer",
-    "bearer": [
-      {
-        "key": "token",
-        "value": "{{access_token}}",
-        "type": "string"
-      }
-    ]
-  },
   "item": [
     {
       "name": "Authentication",
@@ -30,13 +20,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"
+              "raw": "{\n    \"name\": \"Test User 2025\",\n    \"email\": \"john.doe@gmail.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/register",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "register"
@@ -54,6 +46,7 @@
                   "var jsonData = pm.response.json();",
                   "if (jsonData.data && jsonData.data.access_token) {",
                   "    pm.environment.set(\"access_token\", jsonData.data.access_token);",
+                  "    pm.environment.set(\"user_id\", jsonData.data.user.id);",
                   "}"
                 ]
               }
@@ -69,13 +62,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
+              "raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"password\": \"password123\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/login",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "login"
@@ -96,12 +91,19 @@
               ]
             },
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/logout",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "logout"
@@ -122,12 +124,19 @@
               ]
             },
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/user",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "user"
@@ -144,7 +153,7 @@
           "name": "Get All Books",
           "request": {
             "auth": {
-              "type": "bearer",
+              "type": "bearer", 
               "bearer": [
                 {
                   "key": "token",
@@ -153,12 +162,19 @@
               ]
             },
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/books",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "books"
@@ -179,12 +195,19 @@
               ]
             },
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/books/1",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "books",
@@ -195,6 +218,19 @@
         },
         {
           "name": "Create Book",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.id) {",
+                  "    pm.environment.set(\"book_id\", jsonData.data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
           "request": {
             "auth": {
               "type": "bearer",
@@ -214,13 +250,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"title\": \"Laravel Guide\",\n    \"author\": \"John Doe\",\n    \"isbn\": \"978-1234567890\",\n    \"publisher\": \"Tech Publisher\",\n    \"year\": 2024,\n    \"description\": \"A comprehensive guide to Laravel\",\n    \"stock\": 10\n}"
+              "raw": "{\n    \"title\": \"Laravel Guide\",\n    \"author\": \"John Doe\",\n    \"isbn\": \"978-1234567890\",\n    \"publisher\": \"Tech Publisher\",\n    \"year\": 2024,\n    \"description\": \"A comprehensive guide\",\n    \"stock\": 10\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/books",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "books"
@@ -253,9 +291,11 @@
             },
             "url": {
               "raw": "{{base_url}}/api/books/1",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "books",
@@ -277,12 +317,19 @@
               ]
             },
             "method": "DELETE",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/books/1",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "books",
@@ -309,12 +356,19 @@
               ]
             },
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/members",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "members"
@@ -335,12 +389,19 @@
               ]
             },
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/members/1",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "members",
@@ -351,6 +412,19 @@
         },
         {
           "name": "Create Member",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.id) {",
+                  "    pm.environment.set(\"member_id\", jsonData.data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
           "request": {
             "auth": {
               "type": "bearer",
@@ -374,9 +448,11 @@
             },
             "url": {
               "raw": "{{base_url}}/api/members",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "members"
@@ -409,9 +485,11 @@
             },
             "url": {
               "raw": "{{base_url}}/api/members/1",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "members",
@@ -433,12 +511,19 @@
               ]
             },
             "method": "DELETE",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/members/1",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "members",
@@ -465,12 +550,19 @@
               ]
             },
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/borrowings",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "borrowings"
@@ -491,12 +583,19 @@
               ]
             },
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/borrowings/1",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "borrowings",
@@ -507,6 +606,19 @@
         },
         {
           "name": "Create Borrowing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.id) {",
+                  "    pm.environment.set(\"borrowing_id\", jsonData.data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
           "request": {
             "auth": {
               "type": "bearer",
@@ -530,9 +642,11 @@
             },
             "url": {
               "raw": "{{base_url}}/api/borrowings",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "borrowings"
@@ -553,12 +667,19 @@
               ]
             },
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/borrowings/1/return",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "borrowings",
@@ -593,9 +714,11 @@
             },
             "url": {
               "raw": "{{base_url}}/api/borrowings/1",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "borrowings",
@@ -617,12 +740,19 @@
               ]
             },
             "method": "DELETE",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/borrowings/1",
+              "protocol": "http",
               "host": [
-                "{{base_url}}"
+                "localhost"
               ],
+              "port": "8000",
               "path": [
                 "api",
                 "borrowings",
@@ -632,18 +762,6 @@
           }
         }
       ]
-    }
-  ],
-  "variable": [
-    {
-      "key": "base_url",
-      "value": "http://localhost:8000",
-      "type": "string"
-    },
-    {
-      "key": "access_token",
-      "value": "",
-      "type": "string"
     }
   ]
 }
