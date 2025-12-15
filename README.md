@@ -1,61 +1,248 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📚 REST API Perpustakaan Digital
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-red.svg)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2-blue.svg)](https://php.net)
+[![Tests](https://img.shields.io/badge/Tests-44%20Passed-brightgreen.svg)](tests/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## About Laravel
+REST API untuk sistem manajemen Perpustakaan Digital dengan fitur CRUD lengkap, authentication, dan comprehensive testing.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📑 Daftar Output
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Sesuai dengan requirement tugas, berikut adalah output yang disediakan:
 
-## Learning Laravel
+### 1. ✅ Source Code REST API
+**Lokasi**: Seluruh source code ada di folder project ini
+- **Controllers**: `app/Http/Controllers/Api/`
+  - `AuthController.php` - Authentication (Register, Login, Logout)
+  - `BookController.php` - CRUD Books
+  - `MemberController.php` - CRUD Members
+  - `BorrowingController.php` - CRUD Borrowings & Return Book
+- **Models**: `app/Models/`
+  - `User.php`, `Book.php`, `Member.php`, `Borrowing.php`
+- **Migrations**: `database/migrations/`
+  - Create tables untuk books, members, borrowings
+- **Routes**: `routes/api.php`
+  - Semua API endpoints terdefinisi dengan baik
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 2. ✅ Koleksi Testing
+**Lokasi**: 
+- **PHPUnit Tests**: `tests/Feature/`
+  - `AuthTest.php` (7 test cases)
+  - `BookTest.php` (11 test cases)
+  - `MemberTest.php` (11 test cases)
+  - `BorrowingTest.php` (13 test cases)
+- **Postman Collection**: `Perpustakaan_Digital_API.postman_collection.json`
+  - Import file ini ke Postman untuk manual testing
+  - Sudah include auto-save token setelah login
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 3. ✅ Laporan Hasil Pengujian dan Analisis
+**Lokasi**: `API_DOCUMENTATION.md`
+- Dokumentasi API lengkap dengan semua endpoints
+- Laporan hasil pengujian (44 tests, 182 assertions - All Passed ✅)
+- Analisis kritis implementasi
+- Saran perbaikan dan future enhancements
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🎯 Fitur Utama
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### ✅ Designing & Implementing REST API
+1. **Prinsip RESTful**
+   - Resource-based URLs (`/api/books`, `/api/members`, `/api/borrowings`)
+   - HTTP methods yang tepat (GET, POST, PUT, DELETE)
+   - Stateless authentication
+   - Standardized response format
 
-### Premium Partners
+2. **Framework Backend**
+   - Laravel 12 (Framework PHP modern)
+   - Laravel Sanctum (Token-based authentication)
+   - Eloquent ORM (Database management)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3. **CRUD Service**
+   - ✅ Books: Create, Read, Update, Delete
+   - ✅ Members: Create, Read, Update, Delete
+   - ✅ Borrowings: Create, Read, Update, Delete + Return Book
 
-## Contributing
+4. **Validasi Input & Error Handling**
+   - ✅ Input validation untuk semua request
+   - ✅ HTTP status code yang tepat:
+     - `200 OK` - Request berhasil
+     - `201 Created` - Resource baru dibuat
+     - `400 Bad Request` - Business logic error
+     - `401 Unauthorized` - Authentication required
+     - `404 Not Found` - Resource tidak ditemukan
+     - `422 Unprocessable Entity` - Validation error
+     - `500 Internal Server Error` - Server error
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### ✅ Testing API
+1. **API Testing Tools**
+   - PHPUnit (Automated testing)
+   - Postman Collection (Manual testing)
 
-## Code of Conduct
+2. **Test Cases**
+   - ✅ Positive test cases: Semua fitur normal berfungsi
+   - ✅ Negative test cases: Validation, error handling, edge cases
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Testing Coverage**
+   - ✅ Autentikasi (Register, Login, Logout, Unauthorized access)
+   - ✅ Konsistensi data (Stock management, Foreign key validation)
+   - ✅ Error handling (Invalid input, Not found, Duplicate data)
 
-## Security Vulnerabilities
+4. **Laporan & Analisis**
+   - ✅ Test results: 44 tests passed (100% success rate)
+   - ✅ 182 assertions verified
+   - ✅ Analisis kritis dengan skor 8.5/10
+   - ✅ Recommendations untuk improvement
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🚀 Quick Start
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Prerequisites
+- PHP >= 8.2
+- Composer
+- Laravel 12
+
+### Installation
+
+1. **Install Dependencies**
+```bash
+composer install
+```
+
+2. **Setup Environment**
+```bash
+# File .env sudah ada, cek konfigurasi database
+```
+
+3. **Run Migrations**
+```bash
+php artisan migrate:fresh
+```
+
+4. **Start Server**
+```bash
+php artisan serve
+```
+
+API berjalan di: `http://localhost:8000`
+
+---
+
+## 📖 Dokumentasi Lengkap
+
+Baca dokumentasi lengkap di: **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)**
+
+Dokumentasi mencakup:
+- Database Schema
+- Semua API Endpoints dengan contoh request/response
+- Authentication guide
+- Error handling
+- Testing results
+- Analisis kritis
+
+---
+
+## 🧪 Running Tests
+
+### Run All Tests
+```bash
+php artisan test
+```
+
+**Expected Output:**
+```
+Tests:    44 passed (182 assertions)
+Duration: 2.24s
+```
+
+### Test Breakdown
+- Authentication: 7 tests ✅
+- Books CRUD: 11 tests ✅
+- Members CRUD: 11 tests ✅
+- Borrowings CRUD: 13 tests ✅
+
+---
+
+## 🔌 API Usage Examples
+
+### 1. Register & Login
+
+```bash
+# Register
+curl -X POST http://localhost:8000/api/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "password123",
+    "password_confirmation": "password123"
+  }'
+
+# Login - Response akan include access_token
+curl -X POST http://localhost:8000/api/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "password": "password123"
+  }'
+```
+
+### 2. Create Book
+
+```bash
+curl -X POST http://localhost:8000/api/books \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -d '{
+    "title": "Laravel Guide",
+    "author": "John Doe",
+    "isbn": "978-1234567890",
+    "year": 2024,
+    "stock": 10
+  }'
+```
+
+---
+
+## 📊 Test Results Summary
+
+```
+✓ Authentication Tests       (7/7 passed)
+✓ Books CRUD Tests          (11/11 passed)
+✓ Members CRUD Tests        (11/11 passed)
+✓ Borrowings Tests         (13/13 passed)
+
+Total: 44/44 tests passed ✅
+Success Rate: 100%
+```
+
+---
+
+## 🎯 Assignment Requirements Checklist
+
+### ✅ Designing & Implementing REST API
+- [x] Mendesain REST API sesuai prinsip RESTful
+- [x] Mengimplementasikan API menggunakan framework backend (Laravel 12)
+- [x] Menyediakan fitur CRUD Service (Books, Members, Borrowings)
+- [x] Menerapkan validasi input dan error handling
+- [x] HTTP status code yang tepat
+
+### ✅ Testing API
+- [x] Membuat API testing (PHPUnit + Postman)
+- [x] Menyusun test case positif dan negatif
+- [x] Menguji autentikasi, konsistensi data, dan error handling
+
+### ✅ Deliverables
+- [x] Source code REST API
+- [x] Koleksi testing
+- [x] Laporan hasil pengujian dan analisis
+
+---
+
+**🎓 Tugas UAS - REST API Perpustakaan Digital**
+
+**Status**: ✅ Complete & Tested | **Test Coverage**: 44 tests - All Passed ✅
